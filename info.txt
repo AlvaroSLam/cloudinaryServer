@@ -1,0 +1,38 @@
+MULTER!
+
+Sin ninguna ampliación, los input file que creemos en nuestro HTML no nos permiten y no mandarán los datos properly.
+
+Por qué?? Por el enctype atribute que hay en un form. mäs información => https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form
+
+* Por defecto mandaremos los datos como application/x-www-form-urlencoded
+* Para mandar files necesitaremos cambiarlo por miltipart/form-data
+
+PASOS
+1. A la hora de crear el form, además de la pléyade de cosas que hay que añadir tendremos que poner el enctype
+
+<form action='/upload' method='/POST' enctype='multipart/form-data'>
+
+Añadir un input para poder subir archivos
+
+<input type='file' name='audio' >
+
+2. No obstante, si mandamos la POST request el body nos llegará vacío cuando antes nos llegaba todo. Por qué?? PORQUE NECESITAMOS ALGO QUE PARSEE LA INFORMACIÓN DE MANERA CORRECTA Y ESO LO HAREMOS CON MULTER!
+
+npm i multer
+
+https://www.npmjs.com/package/multerhttps://www.npmjs.com/package/multer
+
+Multer adds a body object and a file or files object to the request object. The body object contains the values of the text fields of the form, the file or files object contains the files uploaded via the form.
+
+Multer añade un objeto body y otro objeto file al request object. Por lo que en req.body tendremos los textos que mandemos como siempre y en req.file tendremos las files.
+
+3. Multer nos da dos middlewares o funciones que podremos usar en nuestras consultas 
+
+* multer.single() para un solo file
+* multer.array() para varios files.
+
+Con estos métodos multer parseará la informacióm, pero hay unas reglas de lo que puedes añadir, las tendrás en la coumentación en la parte de application
+
+REcordais que al input file le dimos un name de 'audio' pues será el que debemos recogre aquí en nuestro multer para que parsee bien la información
+
+multer.single('audio') => Nos dará el re.body y el req.file (Si fueran varios archivos los guardaríamos en req.files con 's')
