@@ -52,9 +52,9 @@ app.post("/audio/upload", async (req, res) => {
 
     // SEND FILE TO CLOUDINARY
     cloudinary.config({
-      cloud_name: 'dzzpwrdae',
-      api_key: '379299498844814',
-      api_secret: 'rvJ8WjFFZlLB1w9AcAbP4b_gOSY',
+      cloud_name: YOUR_CLOUDINARY_NAME_HERE,
+      api_key: YOUR_CLOUDINARY_APIKEY_HERE,
+      api_secret: YOUR_CLOUDINARY_SECRET_HERE,
     });
     const { path } = req.file; // file becomes available in req at this point
 
